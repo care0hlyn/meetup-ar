@@ -10,5 +10,6 @@ RSpec.configure do |config|
   config.formatter = 'doc'
   config.before(:each) do
     Event.all.each { |event| event.destroy }
+    User.all.each { |user| user.destroy }
   end
 end
