@@ -129,22 +129,30 @@ def list_events
 end
 
 def create_event
-	header
-	puts "Enter description of event:"
-	description = gets.chomp
-	puts "Enter location of event:"
-	location = gets.chomp
-	puts "Enter start time of event YYYY-DD-MM HH:MM:"
-	start_time = gets.chomp
-	puts "Enter end time of event YYYY-DD-MM HH:MM:"
-	end_tme = gets.chomp
-	event = Event.create(description: description, location: location, start: start_time, :end => end_tme)
-	puts "#{event.description} | #{event.location}, #{event.start} - #{event.end} has been added."
-	sleep (2)
-	# menu
+ header
+  puts "What is the description of your event?"
+  description = gets.chomp
+  puts "What is the location of your event?"
+  location = gets.chomp
+  puts "What is the start date and time of your event? (YYYY-MM-DD HH:MM)"
+  start_time = gets.chomp
+  puts "What is the end date and time of your event? (YYYY-MM-DD HH:MM)"
+  end_time = gets.chomp
+  event = Event.create(description: description, location: location, start: start_time, :end => end_time)
+  puts "#{event.description} | #{event.location} | #{event.start} | #{event.end}"
 end
 
 def edit_event
+	header
+	list_events
+	whitespace
+	puts "Enter index # of event to update."
+	update_event = Event.find_by(id: gets.chomp.to_i)
+	puts "Enter new name of user:"
+	update_event.update(na: gets.chomp)
+	puts "#{update_user.name} has been updated."
+	sleep (2)
+	menu
 
 end
 

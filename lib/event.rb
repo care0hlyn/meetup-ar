@@ -8,7 +8,7 @@ class Event < ActiveRecord::Base
 	before_save :capitalize
 
 	def capitalize
-		self.description = self.description.capitalize &&
+		self.description = self.description.capitalize
 		self.location = self.location.capitalize
 	end
 end
