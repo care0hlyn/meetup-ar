@@ -3,4 +3,12 @@ class Event < ActiveRecord::Base
 	validates :location, :presence => true 
 	validates :start, :presence => true
 	validates :end, :presence => true
+	belongs_to :user
+
+	before_save :capitalize
+
+	def capitalize
+		self.description = self.description.capitalize &&
+		self.location = self.location.capitalize
+	end
 end
