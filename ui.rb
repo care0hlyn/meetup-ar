@@ -69,6 +69,7 @@ def event_menu
 		puts " 1 - Create Event"
 		puts " 2 - Edit Event"
 		puts " 3 - Delete Event"
+		puts " 4 - View Future Events"
 		puts " x - Main Menu"
 		choice = gets.chomp
 		case choice
@@ -78,6 +79,12 @@ def event_menu
 			edit_event
 		when '3'
 			delete_event
+		when '4'
+			future_events
+		when '5'
+			yesterday_events
+		when '6'
+			tomorrow_events
 		else 
 			puts "Invalid"
 			menu
@@ -159,8 +166,7 @@ end
 
 def delete_event
 	header
-	# Event.list_events
-	Event.future.each { |event| puts "#{event.id}. #{event.description} | #{event.start} | #{event.end} " } 
+	Event.list_events
 	puts "Enter index # of event to delete."
 	delete_event = Event.find_by(id: gets.chomp.to_i)
 	delete_event.destroy
@@ -169,6 +175,12 @@ def delete_event
 	menu
 end
 
+def future_events
+	header
+	Event.future.each { |event| puts "#{event.id}. #{event.description} | #{event.start} | #{event.end} " } 
+	sleep (5)
+	event_menu
+end
 
 
 menu
